@@ -1,0 +1,33 @@
+<ion-card class="task-result-card">
+  <div *ngIf="taskResult && taskResult.can; else noMatch">
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="index >= 0 && total > 0">{{index + 1}} / {{total}}</ion-card-subtitle>
+      <ion-card-title>{{taskResult.can.Name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <app-can-rating [canUid]="taskResult.can.uid"></app-can-rating>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-chip>
+              <ion-label>{{taskResult.can.Alcool}}</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>{{typeLabels[taskResult.can.Type]}}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <img class="result-image" [src]="taskResult.image" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </div>
+  <ng-template #noMatch>No match found</ng-template>
+</ion-card>

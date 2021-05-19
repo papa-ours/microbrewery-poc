@@ -1,0 +1,13 @@
+.stars-container {
+    width: fit-content;
+    padding: 4px 24px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--ion-color-primary-rgb), 0.12);
+    border-radius: 64px;
+
+    .star {
+        margin: 4px 2px 0px 2px;
+    }
+}

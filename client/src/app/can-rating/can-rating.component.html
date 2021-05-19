@@ -1,0 +1,12 @@
+<div #starContainer class="stars-container">
+  <ion-text color="primary">
+    <p>Tap to rate</p>
+  </ion-text>
+  <ion-icon *ngFor="let starIcon of getStars(); index as i"
+    class="star"
+    color="primary"
+    size="large"
+    [name]="starIcon"
+    (click)="setRating(i + 1)"
+  ></ion-icon>
+</div>

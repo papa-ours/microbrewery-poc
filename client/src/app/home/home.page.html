@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Micro Brewery</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Welcome to</ion-card-subtitle>
+      <ion-card-title>Micro Brewery</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Take a picture to rate microbrewery beers and create your taste profile.
+      </p>
+
+      <ion-button (click)="goToCamera()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Open scanner
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

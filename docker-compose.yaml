@@ -1,0 +1,40 @@
+version: "3.3"
+
+networks:
+    api_server_default:
+        external: true
+services:
+    server:
+        build:
+            context: ./server
+            dockerfile: ./Dockerfile
+        environment:
+            ENV_NAME: dev
+            DB_HOST: db
+            DB_NAME: dev
+            DB_USER: root
+            DB_PASSWORD: MicroBrew
+        ports:
+            - 5001:5001
+        networks:
+            - back-end
+        links:
+            - db
+        volumes:
+            - ./server/src:/usr/src/server/src
+
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: MicroBrew
+            MYSQL_DATABASE: dev
+        expose:
+            - 3306
+        networks:
+            - back-end
+        volumes:
+            - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./db/data:/var/lib/mysql
+networks:
+    back-end:
