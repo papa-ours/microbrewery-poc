@@ -4,6 +4,23 @@ networks:
     api_server_default:
         external: true
 services:
+    ai:
+        build:
+            context: ./ai
+            dockerfile: ./Dockerfile
+        environment:
+            ENV_NAME: dev
+            DB_HOST: db
+            DB_NAME: dev
+            DB_USER: root
+            DB_PASSWORD: MicroBrew
+        networks:
+            - back-end
+        links:
+            - db
+        volumes:
+            - ./ai/src:/usr/src/ai/src
+
     server:
         build:
             context: ./server
@@ -20,6 +37,7 @@ services:
             - back-end
         links:
             - db
+            - ai
         volumes:
             - ./server/src:/usr/src/server/src
 
