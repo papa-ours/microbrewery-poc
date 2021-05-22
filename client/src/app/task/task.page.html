@@ -7,12 +7,14 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-slides *ngIf="task && task.results.length; else noResults" mode="ios" pager="ios" scrollbar="ios" [options]="slideOpts">
-    <ion-slide *ngFor="let taskResult of task.results; index as i">
-      <app-task-result [result]="taskResult" [index]="i" [total]="task.results.length"></app-task-result>
-    </ion-slide>
-  </ion-slides>
-  <ng-template #noResults>
-    No result
-  </ng-template>
+  <div *ngIf="task">
+    <ion-slides *ngIf="task.results.length; else noResults" mode="ios" pager="ios" scrollbar="ios" [options]="slideOpts">
+      <ion-slide *ngFor="let taskResult of task.results; index as i">
+        <app-task-result [result]="taskResult" [index]="i" [total]="task.results.length"></app-task-result>
+      </ion-slide>
+    </ion-slides>
+    <ng-template #noResults>
+      No result
+    </ng-template>
+  </div>
 </ion-content>

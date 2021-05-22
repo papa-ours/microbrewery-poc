@@ -9,12 +9,28 @@ ion-content {
     width: 100%;
 }
 
-#take-picture {
+.cancel-btn {
     position: absolute;
-    bottom: 12px;
+    bottom: 24px;
+    left: 12.5%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.photo-btn {
+    position: absolute;
+    bottom: 24px;
+    right: 12.5%;
+    transform: translateX(50%);
+    z-index: 1;
+}
+
+.take-picture-btn {
+    position: absolute;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 11;
+    z-index: 1;
 }
 
 #camera-preview {

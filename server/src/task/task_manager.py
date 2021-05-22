@@ -17,8 +17,8 @@ class TaskManager:
         
     def create_task(self, image):
         uid = uuid.uuid4().hex
-        task = Task(image)
-        self.__tasks[uid] = task
+        self.__tasks[uid] = Task(image)
+        self.__tasks[uid].start()
         
         return uid
 

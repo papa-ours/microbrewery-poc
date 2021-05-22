@@ -1,3 +1,4 @@
+from can_recognition.can_recognizer import NoMatchFoundException
 from .task_result import TaskResult
 from image_utils.image_loader import ImageLoader
 from can_detection.can_detector import CanDetector
@@ -13,16 +14,12 @@ class TaskState(Enum):
     DONE = 'done'
     
 class Task:
-    
-        
-    CONFIDENECE_THRESHOLD = 0.76
+    CONFIDENCE_THRESHOLD = 0.76
     
     def __init__(self, image_base64):
         self.image_base64 = image_base64
         self.results = []
         self.state = TaskState.PENDING
-
-        self.start()
         
     def start(self):
         self.process()
@@ -35,15 +32,17 @@ class Task:
         detections = CanDetector.extract_cans(image)
         for detection in detections:
             try:
-                if detection['confidence'] > Task.CONFIDENECE_THRESHOLD:
+                if detection['confidence'] > Task.CONFIDENCE_THRESHOLD:
                     detection_image = CanDetector.get_region(detection, image)
+                    encoded_image = ImageLoader.image_to_base64(detection_image)
+                    
                     can_uid = CanRecognizer.get_match(detection_image)
                     can = CanData.get_beer_by_uid(can_uid)
-                    
-                    encoded_image = ImageLoader.image_to_base64(detection_image)
                     result = TaskResult(detection, can, encoded_image)
                     
                     self.results.append(result)
+            except NoMatchFoundException:
+                self.results.append(TaskResult(detection, None, encoded_image))
             except Exception as e:
                 print(e)
                 

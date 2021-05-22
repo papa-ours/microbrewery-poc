@@ -1,17 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/home"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <div id="camera-preview" class="camera-preview">
     <div class="overlay">
-      <ion-button id="take-picture" (click)="takePicture()" shape="round" [disabled]="isLoading">
+      <ion-button class="cancel-btn" color="medium" (click)="cancel()" fill="clear">
+        Cancel
+      </ion-button>
+
+      <ion-button class="take-picture-btn" (click)="takePicture()" shape="round" [disabled]="isLoading">
         <ion-icon *ngIf="!isLoading" slot="icon-only" name="camera"></ion-icon>
         <ion-spinner *ngIf="isLoading" name="lines"></ion-spinner>
+      </ion-button>
+
+      <ion-button class="photo-btn" color="medium" (click)="chooseFile()"  fill="clear">
+        <ion-icon slot="icon-only" name="image-outline"></ion-icon>
       </ion-button>
     </div>
   </div>
