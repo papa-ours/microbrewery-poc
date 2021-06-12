@@ -10,6 +10,7 @@ import { LoginResponse, LoginService } from '../login.service';
 })
 export class LoginPage implements OnInit {
   public loginForm: FormGroup;
+  public response: LoginResponse;
 
   public constructor(
     public router: Router,
@@ -29,8 +30,8 @@ export class LoginPage implements OnInit {
   }
 
   public async login(): Promise<void> {
-    const response: LoginResponse = await this.loginService.login(this.loginForm);
-    if (response.success) {
+    this.response = await this.loginService.login(this.loginForm);
+    if (this.response.success) {
       this.router.navigate(['tabs', 'home']);
     }
   }
