@@ -2,12 +2,12 @@ import csv
 import os
 
 class CanData:
-    filename = 'final_beers.csv'
+    FILENAME = 'final_beers.txt'
     beers = {}
     
     @classmethod
     def load(cls):
-        with open(os.path.join(os.path.dirname(__file__), cls.filename), 'r') as csvfile:
+        with open(os.path.join(os.path.dirname(__file__), cls.FILENAME), 'r') as csvfile:
             reader = csv.DictReader(csvfile)
             for beer in reader:
                 cls.beers[beer['uid']] = beer

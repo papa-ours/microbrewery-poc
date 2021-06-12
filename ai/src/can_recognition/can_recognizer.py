@@ -40,7 +40,8 @@ class CanRecognizer:
     def get_match(cls, query_image):
         kp = cls.get_keypoints(query_image)
         
-        best_match = [(None, 0)] * kp.shape[0]
+        # Empty best match for every keypoint
+        best_match = [(None, -1)] * kp.shape[0]
 
         for k in cls.keypoints:
             try:
@@ -49,7 +50,7 @@ class CanRecognizer:
                 
                 for i in range(kp.shape[0]):
                     dist = matches[i][0].distance
-                    if best_match[i][1] == 0 or dist < best_match[i][1]:
+                    if best_match[i][1] == -1 or dist < best_match[i][1]:
                         best_match[i] = (k, dist)
             except:
                 pass
