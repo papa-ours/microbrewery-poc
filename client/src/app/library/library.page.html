@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Library</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="cans.length; else noCans"></div>
+  <ng-template #noCans>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Your library is empty</ion-card-subtitle>
+        <ion-card-title>Did you rate a beer yet?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          Take a picture to rate a beer and create your taste profile.
+        </p>
+  
+        <ion-button (click)="goToCamera()" class="ion-margin-top">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Open scanner
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>
